@@ -1,0 +1,5 @@
+.clangd/
+dbg/
+rls/
+compile_commands.json
+tags
