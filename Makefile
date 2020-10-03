@@ -9,12 +9,15 @@ ENABLE_SEMIHOSTING=1
 # Paths
 STLINK = /usr/local/bin
 OPENOCD = /usr/bin/openocd
-STARTUP = sys/startup_stm32l433xx.s 
-LDSCRIPT = sys/STM32L433RCTx_FLASH.ld
-PATH_TO_CUBE = ../STM32Cube_FW_L4_V1.15.1
+PATH_TO_CUBE = $(HOME)/STM32Cube/Repository/STM32Cube_FW_L4_V1.16.0
+GCCPATH = /opt/gcc-arm-none-eabi-9-2020-q2-update/bin
+
+STARTUP = config/startup_stm32l433xx.s
+LDSCRIPT = config/STM32L433RCTx_FLASH.ld
 
 # Includes 
-C_INC = -I./
+C_INC  = -I.
+C_INC += -Iconfig
 C_INC += -I$(PATH_TO_CUBE)/Drivers/STM32L4xx_HAL_Driver/Inc
 C_INC += -I$(PATH_TO_CUBE)/Drivers/CMSIS/Include
 C_INC += -I$(PATH_TO_CUBE)/Drivers/CMSIS/Device/ST/STM32L4xx/Include
@@ -22,7 +25,8 @@ C_INC += -I$(PATH_TO_CUBE)/Drivers/CMSIS/Device/ST/STM32L4xx/Include
 # Sources section
 ASM_SRC = $(STARTUP)
 
-C_SRC = main.c sys/system_stm32l4xx.c
+C_SRC  = config/system_stm32l4xx.c
+C_SRC += main.c
 
 CXX_SRC =
 
